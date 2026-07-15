@@ -77,9 +77,11 @@ def main() -> None:
 
     forbidden = []
     for path in ROOT.rglob("*"):
-        if path.is_dir() or any(part in {".git", ".venv"} for part in path.parts):
+        if any(part in {".git", ".venv", "__pycache__"} for part in path.parts):
             continue
-        if path.name == ".DS_Store" or path.suffix == ".pyc" or path.name == "__pycache__":
+        if path.is_dir():
+            continue
+        if path.name == ".DS_Store":
             forbidden.append(str(path.relative_to(ROOT)))
         if path.suffix in {".py", ".md", ".toml", ".yaml", ".yml"}:
             text = path.read_text(encoding="utf-8", errors="ignore")
