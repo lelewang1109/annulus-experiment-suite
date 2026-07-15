@@ -10,13 +10,13 @@ The project is organized into four top-level experiment folders:
 └── workflow-v3/    # Workflow experiment v3: 0715 four-vertex/corner supplement
 ```
 
-Each experiment folder follows the same pattern:
+Each experiment folder follows this pattern:
 
 ```text
 <experiment>/
 ├── data/       # Inputs or generated data required by this experiment
-├── code/       # Code ordered by step
-├── results/    # Results ordered by matching step
+├── code/       # Code for this experiment family
+├── results/    # Result snapshots for this experiment family
 └── README.md   # Local explanation and code/result map
 ```
 
@@ -24,12 +24,12 @@ Each experiment folder follows the same pattern:
 
 Baseline experiments diagnose why direct continuous deformation is not enough.
 
-| Step | Method | Code | Results | Key metrics |
-|---|---|---|---|---|
-| 01 | Direct four-corner polar mapping | `baseline/code/step01_direct_polar_mapping.py` | `baseline/results/step01_direct_polar_mapping/` | Area CV 1.212; overlaps 3; inner violations 0; max edge ratio 13.50 |
-| 02 | Uniform harmonic annulus | `baseline/code/step02_uniform_harmonic_annulus.py` | `baseline/results/step02_uniform_harmonic_annulus/` | Area CV 1.436; overlaps 46; inner violations 136; max edge ratio 15.31 |
-| 03 | Cotangent/conformal annulus | `baseline/code/step03_cotangent_conformal_annulus.py` | `baseline/results/step03_cotangent_conformal_annulus/` | Area CV 1.466; overlaps 46; inner violations 128; max edge ratio 8.67 |
-| 04 | Area-preserving optimization | `baseline/code/step04_area_preserving_annulus.py` | `baseline/results/step04_area_preserving_annulus/` | Area CV 0.210; overlaps 250; inner violations 268; max edge ratio 33.69 |
+| Method | Code | Results | Key metrics |
+|---|---|---|---|
+| Direct four-corner polar mapping | `baseline/code/direct_polar_mapping.py` | `baseline/results/direct_polar_mapping/` | Area CV 1.212; overlaps 3; inner violations 0; max edge ratio 13.50 |
+| Uniform harmonic annulus | `baseline/code/uniform_harmonic_annulus.py` | `baseline/results/uniform_harmonic_annulus/` | Area CV 1.436; overlaps 46; inner violations 136; max edge ratio 15.31 |
+| Cotangent/conformal annulus | `baseline/code/cotangent_conformal_annulus.py` | `baseline/results/cotangent_conformal_annulus/` | Area CV 1.466; overlaps 46; inner violations 128; max edge ratio 8.67 |
+| Area-preserving optimization | `baseline/code/area_preserving_annulus.py` | `baseline/results/area_preserving_annulus/` | Area CV 0.210; overlaps 250; inner violations 268; max edge ratio 33.69 |
 
 ## Workflow v1
 

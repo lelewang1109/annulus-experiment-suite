@@ -12,7 +12,7 @@
 ├── data/
 │   ├── input/                 # 便携、可版本化的实验输入
 │   └── reference/             # 只用于解释和人工核对的参考文件
-├── baseline/                  # baseline 四个实验：code / results 按 step 整理
+├── baseline/                  # baseline 四个独立实验：按方法名整理
 ├── workflow-v1/               # workflow v1：第一版拓扑感知优化
 ├── workflow-v2/               # workflow v2：中心点输入的完整结果快照
 ├── workflow-v3/               # workflow v3：0715 四角点/四顶点补充实验
