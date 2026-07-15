@@ -1,4 +1,4 @@
-# Annulus Experiment Suite
+# Annulus Experiment
 
 面向时空污染比较的地理网格环形抽象实验。仓库以北京市 176 个编号网格为案例，比较四种连续参数化 baseline，并整理三个拓扑感知 workflow 版本。
 
