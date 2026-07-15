@@ -24,7 +24,6 @@
 └── README.md   # 该实验内部说明
 ```
 
-根目录不再保留旧版 `data/`、`results/`、`scripts/`，避免和最终实验结构混淆。baseline 是四个独立方法，不按 step 命名；workflow-v1、workflow-v2、workflow-v3 按 step 顺序组织代码和结果。
 
 ## Baseline
 
