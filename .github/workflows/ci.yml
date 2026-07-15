@@ -28,8 +28,7 @@ jobs:
           test -d workflow-v3/data
           test -d workflow-v3/code
           test -d workflow-v3/results
-          test -f EXPERIMENT_INDEX.md
-          test -f WORKFLOW_VERSIONS.md
+          test -f README.md
       - name: Check repository hygiene
         run: |
           ! git ls-files | grep -E '(^|/)(\.DS_Store|__pycache__)(/|$)|\.pyc$'
