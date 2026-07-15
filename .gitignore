@@ -20,5 +20,5 @@ report/
 *.bak
 *~
 
-results/**/parameter_sweep_results.csv
-results/**/parameter_sweep_pareto.png
+**/results/**/parameter_sweep_results.csv
+**/results/**/parameter_sweep_pareto.png

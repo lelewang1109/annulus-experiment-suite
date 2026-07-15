@@ -1,8 +1,8 @@
 {
   "parameters": {
     "input_csv": "data/generated/four_vertex_grid_cells.csv",
-    "topology_csv": "results/workflow/step03/step03_topology_constraints.csv",
-    "output_dir": "results/workflow/step04_topology_aware_v2",
+    "topology_csv": "results/step03_line_md_scaffold/step03_topology_constraints.csv",
+    "output_dir": "results/step05_topology_aware_v2",
     "layers": 6,
     "inner_radius": 1.0,
     "outer_radius": 1.85,

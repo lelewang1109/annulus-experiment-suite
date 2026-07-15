@@ -9,21 +9,10 @@
 
 ```text
 .
-├── data/
-│   ├── input/                 # 便携、可版本化的实验输入
-│   └── reference/             # 只用于解释和人工核对的参考文件
 ├── baseline/                  # baseline 四个独立实验：按方法名整理
 ├── workflow-v1/               # workflow v1：第一版拓扑感知优化
 ├── workflow-v2/               # workflow v2：中心点输入的完整结果快照
 ├── workflow-v3/               # workflow v3：0715 四角点/四顶点补充实验
-├── scripts/
-│   ├── baselines/             # 原始 baseline 代码
-│   ├── workflow/              # 原始中心点 workflow 代码
-│   ├── run_all.py             # 按依赖顺序复现实验
-│   └── validate_repository.py # 仓库与结果完整性检查
-├── results/
-│   ├── baselines/             # 原始 baseline 结果
-│   └── workflow/              # 原始中心点 workflow 结果
 └── EXPERIMENT_INDEX.md        # baseline 与 workflow-v1/v2/v3 的代码和结果索引
 ```
 
@@ -51,33 +40,18 @@ python -m pip install -r requirements.txt
 
 ## Reproduce
 
-先执行快速流程，生成 baseline 1–3 和 workflow Step 1–4 的非慢速结果：
+每个实验目录都自包含 `data/`、`code/` 和 `results/`。进入对应目录后运行该目录 `README.md` 中列出的代码入口即可复现相应结果。例如：
 
 ```bash
-python scripts/run_all.py --skip-slow
+cd workflow-v3
+python code/step01_build_four_vertex_polar.py
 ```
 
-执行全部实验（面积优化和拓扑感知 v2 耗时更长）：
-
-```bash
-python scripts/run_all.py
-```
-
-只复现一个阶段：
-
-```bash
-python scripts/run_all.py --only step04-v2
-```
-
-`run_all.py` 对 v2 显式锁定 `w_new=4.5`、`w_angle=1.2`、`w_angle_cap=3.0` 和 `max_rank_shift=2`，与已提交的 JSON 结果保持一致，不受研究过程中脚本默认值变化的影响。脚本自身的默认值也已同步到该可复现配置。
+baseline 是四个独立方法，不按 step 命名；workflow-v1、workflow-v2、workflow-v3 则按 step 顺序组织代码和结果。根目录不再保留旧版 `data/`、`results/`、`scripts/`，避免和四个实验文件夹的最终结构混淆。
 
 ## Validate
 
-```bash
-python scripts/validate_repository.py
-```
-
-该检查会验证输入单元数量、关键结果文件、v2 指标字段，并阻止 `.DS_Store`、`.pyc` 和本机绝对路径进入公开仓库。
+GitHub Actions 会检查四个实验目录是否完整、关键说明文件是否存在，并阻止 `.DS_Store`、`.pyc` 和本机绝对路径进入公开仓库。
 
 ## Current result snapshot
 
@@ -92,4 +66,4 @@ python scripts/validate_repository.py
 
 ## Data and version boundary
 
-`data/input/beijing_grid_cells.csv` 是本仓库的规范数据接口，包含 176 个单元的稳定 ID、行列索引、经纬度中心和中心极坐标。`beijing_boundary_rays.csv` 只保留直接极坐标 baseline 所需的 475 条角点射线距离，用于取代原先的本机 GeoJSON 绝对路径。原始 PM2.5/GeoJSON 数据准备工程不包含在此便携实验仓库中。
+各实验目录下的 `data/input/beijing_grid_cells.csv` 是对应实验的规范数据接口，包含 176 个单元的稳定 ID、行列索引、经纬度中心和中心极坐标。`beijing_boundary_rays.csv` 只保留直接极坐标 baseline 所需的 475 条角点射线距离，用于取代原先的本机 GeoJSON 绝对路径。原始 PM2.5/GeoJSON 数据准备工程不包含在此便携实验仓库中。

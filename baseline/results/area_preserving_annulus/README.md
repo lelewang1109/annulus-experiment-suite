@@ -19,7 +19,7 @@
 - `baseline_area_preserving_annulus_cells.csv`
 - `baseline_area_preserving_annulus_vertices.csv`
 - `baseline_area_preserving_annulus_metrics.csv`
-- `scripts/baselines/build_baseline_area_preserving_annulus.py`
+- `code/area_preserving_annulus.py`
 
 ## 当前指标摘要
 

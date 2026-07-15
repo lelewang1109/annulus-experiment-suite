@@ -19,7 +19,7 @@
 - `baseline_harmonic_annulus_cells.csv`
 - `baseline_harmonic_annulus_vertices.csv`
 - `baseline_harmonic_annulus_metrics.csv`
-- `scripts/baselines/build_baseline_harmonic_annulus.py`
+- `code/uniform_harmonic_annulus.py`
 
 ## 当前指标摘要
 

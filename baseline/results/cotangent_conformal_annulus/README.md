@@ -19,7 +19,7 @@
 - `baseline_conformal_annulus_cells.csv`
 - `baseline_conformal_annulus_vertices.csv`
 - `baseline_conformal_annulus_metrics.csv`
-- `scripts/baselines/build_baseline_conformal_annulus.py`
+- `code/cotangent_conformal_annulus.py`
 
 ## 当前指标摘要
 

@@ -57,7 +57,7 @@ def run() -> None:
 - `{STEM}_cells.csv`
 - `{STEM}_vertices.csv`
 - `{STEM}_metrics.csv`
-- `scripts/baselines/build_baseline_harmonic_annulus.py`
+- `code/uniform_harmonic_annulus.py`
 
 ## 当前指标摘要
 

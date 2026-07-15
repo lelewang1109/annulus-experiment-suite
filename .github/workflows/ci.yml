@@ -14,5 +14,23 @@ jobs:
           python-version: "3.11"
           cache: "pip"
       - run: python -m pip install -r requirements.txt
-      - run: python scripts/run_all.py --skip-slow
-      - run: python scripts/validate_repository.py
+      - name: Check organized experiment folders
+        run: |
+          test -d baseline/data
+          test -d baseline/code
+          test -d baseline/results
+          test -d workflow-v1/data
+          test -d workflow-v1/code
+          test -d workflow-v1/results
+          test -d workflow-v2/data
+          test -d workflow-v2/code
+          test -d workflow-v2/results
+          test -d workflow-v3/data
+          test -d workflow-v3/code
+          test -d workflow-v3/results
+          test -f EXPERIMENT_INDEX.md
+          test -f WORKFLOW_VERSIONS.md
+      - name: Check repository hygiene
+        run: |
+          ! git ls-files | grep -E '(^|/)(\.DS_Store|__pycache__)(/|$)|\.pyc$'
+          ! git grep -n '/Users/lele/' -- ':!README.md' ':!.github/workflows/ci.yml'

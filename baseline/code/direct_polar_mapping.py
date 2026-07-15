@@ -513,7 +513,7 @@ def write_readme(metric_row: dict[str, object]) -> None:
 - `baseline_polar_mapping_corners.csv`: 每个 cell 四个角点的原始经纬度、theta、rho、圆环坐标。
 - `baseline_polar_mapping_cells.csv`: 每个 cell 的圆环中心、面积和顶点数。
 - `baseline_polar_mapping_metrics.csv`: 单独指标表。
-- `scripts/baselines/build_baseline_polar_mapping.py`: 复现脚本。
+- `code/direct_polar_mapping.py`: 复现脚本。
 
 ## 当前指标摘要
 
