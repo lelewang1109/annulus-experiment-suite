@@ -1,7 +1,7 @@
 # Workflow versions
 
-This repository keeps the original center-point workflow at the project root and
-adds three explicit workflow version folders for clearer comparison.
+For the full baseline + workflow experiment map, read `EXPERIMENT_INDEX.md`.
+This file only summarizes the three workflow versions.
 
 ## Version map
 

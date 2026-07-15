@@ -1,6 +1,8 @@
 # Results
 
-`baselines/` 保存四种当前 baseline 的图、单元/顶点 CSV 和独立指标表。`workflow/` 按 Step 1–4 保存中间证据和拓扑感知 v2 的最终输出。
+`baselines/` 保存四种当前 baseline 的图、单元/顶点 CSV 和独立指标表。`workflow/` 按 Step 1–4 保存根目录中心点 workflow 的中间证据和拓扑感知 v2 的最终输出。
+
+更完整的代码与结果对应关系见仓库根目录的 `EXPERIMENT_INDEX.md`。
 
 
 关键机器可读文件：

@@ -17,21 +17,23 @@
 │   ├── workflow/              # Step 1–4 和拓扑感知 v1/v2
 │   ├── run_all.py             # 按依赖顺序复现实验
 │   └── validate_repository.py # 仓库与结果完整性检查
-└── results/                    # 建议与代码一起提交的基准结果
+├── results/
+│   ├── baselines/             # 四种 baseline 的结果快照
+│   └── workflow/              # 根目录中心点 workflow 的结果快照
+├── v1/                        # workflow v1：第一版拓扑感知优化器
+├── v2/                        # workflow v2：中心点输入的完整结果快照
+├── v3/                        # workflow v3：0715 四角点/四顶点补充实验
+└── EXPERIMENT_INDEX.md        # baseline 与 v1/v2/v3 的代码和结果索引
 ```
 
-## Workflow versions
+## Experiment map
 
-The root workflow remains the original center-point experiment suite. For
-clearer comparison, version snapshots are also provided in `v1/`, `v2/`, and
-`v3/`:
+本仓库包含两类实验：
 
-- `v1/`: first center-point topology-aware optimizer code.
-- `v2/`: center-point workflow result snapshot.
-- `v3/`: 0715 four-vertex / corner-based workflow supplement.
+- **Baseline experiments**：四种连续参数化或几何优化方法，代码在 `scripts/baselines/`，结果在 `results/baselines/`。
+- **Workflow experiments**：三个离散拓扑感知 workflow 版本，分别在 `v1/`、`v2/`、`v3/`。
 
-See `WORKFLOW_VERSIONS.md` for the code paths, result directories, and metric
-summary for each version.
+先读 `EXPERIMENT_INDEX.md` 可以看到每个实验对应的代码入口、输入数据、结果目录和关键指标。`WORKFLOW_VERSIONS.md` 保留为 workflow 三个版本的简要说明。
 
 ## Environment
 
