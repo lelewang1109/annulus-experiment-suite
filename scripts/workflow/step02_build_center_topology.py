@@ -18,8 +18,7 @@ from matplotlib.collections import LineCollection, PolyCollection
 
 THIS_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = THIS_DIR.parents[1]
-DEFAULT_INPUT_CSV = PROJECT_ROOT / "data" / "generated" / "four_vertex_grid_cells.csv"
-DEFAULT_CORNERS_CSV = PROJECT_ROOT / "data" / "generated" / "four_vertex_grid_corners.csv"
+DEFAULT_INPUT_CSV = PROJECT_ROOT / "data" / "input" / "beijing_grid_cells.csv"
 DEFAULT_OUTPUT_PNG = PROJECT_ROOT / "results" / "workflow" / "step02_center_topology.png"
 
 
@@ -53,22 +52,6 @@ def square_from_center(x: float, y: float, side: float) -> np.ndarray:
     )
 
 
-def read_four_vertex_polygons(path: Path) -> dict[int, np.ndarray]:
-    if not path.exists():
-        return {}
-    grouped: dict[int, list[tuple[int, float, float]]] = {}
-    with path.open(encoding="utf-8") as f:
-        for item in csv.DictReader(f):
-            grouped.setdefault(int(item["cell_id"]), []).append(
-                (int(item["corner_index"]), float(item["annulus_x"]), float(item["annulus_y"]))
-            )
-    return {
-        cell_id: np.asarray([[x, y] for _corner_index, x, y in sorted(items)], dtype=float)
-        for cell_id, items in grouped.items()
-        if len(items) >= 3
-    }
-
-
 def cell_center(record: dict[str, float | int]) -> np.ndarray:
     return np.array([float(record["x"]), float(record["y"])], dtype=float)
 
@@ -90,19 +73,11 @@ def save_topology_figure(
     output_path: Path,
     records: list[dict[str, float | int]],
     *,
-    corners_csv: Path,
     inner_radius: float,
     outer_radius: float,
 ) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    four_vertex_polygons = read_four_vertex_polygons(corners_csv)
-    polygons = [
-        four_vertex_polygons.get(
-            int(item["cell_id"]),
-            square_from_center(float(item["x"]), float(item["y"]), float(item["side"])),
-        )
-        for item in records
-    ]
+    polygons = [square_from_center(float(item["x"]), float(item["y"]), float(item["side"])) for item in records]
     centers = np.asarray([cell_center(item) for item in records], dtype=float)
     edges = topology_edges(records)
     segments = [(centers[i], centers[j]) for i, j in edges]
@@ -119,7 +94,7 @@ def save_topology_figure(
     ax.add_collection(edge_collection)
     ax.scatter(centers[:, 0], centers[:, 1], s=7.5, color="#1f5d9a", edgecolors="white", linewidths=0.22, zorder=4)
 
-    ax.set_title("Four-Vertex Polar Annulus - Original Grid Topology Connected by Centroids", loc="left", fontsize=13, fontweight="bold")
+    ax.set_title("Center Polar Annulus - Original Grid Topology Connected by Centers", loc="left", fontsize=13, fontweight="bold")
     ax.set_xlabel("X")
     ax.set_ylabel("Y")
     ax.set_aspect("equal", adjustable="box")
@@ -139,7 +114,6 @@ def save_topology_figure(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Connect center-polar annulus cell centers by original grid topology.")
     parser.add_argument("--input-csv", type=Path, default=DEFAULT_INPUT_CSV)
-    parser.add_argument("--corners-csv", type=Path, default=DEFAULT_CORNERS_CSV)
     parser.add_argument("--output-png", type=Path, default=DEFAULT_OUTPUT_PNG)
     parser.add_argument("--inner-radius", type=float, default=1.0)
     parser.add_argument("--outer-radius", type=float, default=1.85)
@@ -151,7 +125,6 @@ if __name__ == "__main__":
     save_topology_figure(
         args.output_png,
         read_center_polar_cells(args.input_csv),
-        corners_csv=args.corners_csv,
         inner_radius=args.inner_radius,
         outer_radius=args.outer_radius,
     )

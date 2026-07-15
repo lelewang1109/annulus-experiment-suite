@@ -1,2 +1,0 @@
-method,cell_count,zero_area_cells,clockwise_orientation_cells,vertices_outside_outer,vertices_inside_inner,centers_outside_outer,centers_inside_inner,area_sum,area_mean,area_cv,area_min,area_max
-four_vertex_direct_polar,176,0,0,64,0,6,4,8.588250534000856,0.04879687803409578,1.2116905465354644,0.00528144292352517,0.4614218777584348

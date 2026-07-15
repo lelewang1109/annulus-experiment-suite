@@ -13,13 +13,11 @@ htmlcov/
 .venv/
 venv/
 env/
-report/
 
 *.log
 *.tmp
 *.bak
 *~
-.~*
 
 results/**/parameter_sweep_results.csv
 results/**/parameter_sweep_pareto.png
