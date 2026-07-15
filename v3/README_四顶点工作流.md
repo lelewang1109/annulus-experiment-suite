@@ -32,7 +32,7 @@
 - step04 initial: `results/workflow/step04_initial/step04_line_md_layer_column_partition.png`
 - step04 topology-aware v2: `results/workflow/step04_topology_aware_v2/step04_topology_aware_partition_v2.png`
 
-## 当前 v2 指标
+## 当前 v3 指标
 
 - baseline effective F1: `0.5755968169761273`
 - optimized effective F1: `0.711484593837535`

@@ -20,6 +20,19 @@
 └── results/                    # 建议与代码一起提交的基准结果
 ```
 
+## Workflow versions
+
+The root workflow remains the original center-point experiment suite. For
+clearer comparison, version snapshots are also provided in `v1/`, `v2/`, and
+`v3/`:
+
+- `v1/`: first center-point topology-aware optimizer code.
+- `v2/`: center-point workflow result snapshot.
+- `v3/`: 0715 four-vertex / corner-based workflow supplement.
+
+See `WORKFLOW_VERSIONS.md` for the code paths, result directories, and metric
+summary for each version.
+
 ## Environment
 
 - Python 3.10+
