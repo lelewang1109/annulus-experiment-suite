@@ -14,7 +14,7 @@
 │   └── reference/             # 只用于解释和人工核对的参考文件
 ├── scripts/
 │   ├── baselines/             # 四种 baseline 及共用几何/指标代码
-│   ├── workflow/              # Step 1–4 和拓扑感知 v1/v2
+│   ├── workflow/              # Step 1–4、四顶点入口和拓扑感知 v1/v2
 │   ├── run_all.py             # 按依赖顺序复现实验
 │   └── validate_repository.py # 仓库与结果完整性检查
 └── results/                    # 建议与代码一起提交的基准结果
@@ -72,8 +72,8 @@ python scripts/validate_repository.py
 | Cotangent/conformal approximation | 1.466 | 46 | 128 | 8.67 |
 | Area-preserving optimization | 0.210 | 250 | 268 | 33.69 |
 
-拓扑感知 v2 的有效邻接 Precision / Recall / F1 为 `0.595 / 0.763 / 0.669`；保留 238 条原始边，丢失 74 条，新增 162 条。这些结果是多目标折中，不表示拓扑或方向已被完全保持。
+四顶点入口的拓扑感知 v3 沿用 v2 的层归属、层内顺序和角宽边界优化，但 Step 1 先重建每个 cell 的四个角点并做极坐标映射，再以四顶点多边形质心进入后续流程。当前有效邻接 Precision / Recall / F1 为 `0.632 / 0.814 / 0.711`；保留 254 条原始边，丢失 58 条，新增 148 条。跨多层冲突为 11 条，层容量误差为 `0.00619`。这些结果是多目标折中，不表示拓扑、方向或形状已被完全保持。
 
 ## Data and version boundary
 
-`data/input/beijing_grid_cells.csv` 是本仓库的规范数据接口，包含 176 个单元的稳定 ID、行列索引、经纬度中心和中心极坐标。`beijing_boundary_rays.csv` 只保留直接极坐标 baseline 所需的 475 条角点射线距离，用于取代原先的本机 GeoJSON 绝对路径。原始 PM2.5/GeoJSON 数据准备工程不包含在此便携实验仓库中。
+`data/input/beijing_grid_cells.csv` 是本仓库的规范数据接口，包含 176 个单元的稳定 ID、行列索引、经纬度中心和中心极坐标。`data/generated/four_vertex_grid_cells.csv` 与 `data/generated/four_vertex_grid_corners.csv` 保存 v3 四顶点入口生成的单元质心和角点结果。`beijing_boundary_rays.csv` 只保留直接极坐标 baseline 所需的 475 条角点射线距离，用于取代原先的本机 GeoJSON 绝对路径。原始 PM2.5/GeoJSON 数据准备工程不包含在此便携实验仓库中。

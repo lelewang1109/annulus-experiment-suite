@@ -20,7 +20,7 @@ from matplotlib.collections import LineCollection, PolyCollection
 THIS_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = THIS_DIR.parents[1]
 WORKFLOW_DIR = THIS_DIR
-DEFAULT_INPUT_CSV = PROJECT_ROOT / "data" / "input" / "beijing_grid_cells.csv"
+DEFAULT_INPUT_CSV = PROJECT_ROOT / "data" / "generated" / "four_vertex_grid_cells.csv"
 DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "results" / "workflow" / "step03"
 
 if str(WORKFLOW_DIR) not in sys.path:
