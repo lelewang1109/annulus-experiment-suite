@@ -1,0 +1,1731 @@
+{
+  "parameters": {
+    "input_csv": "data/generated/four_vertex_grid_cells.csv",
+    "topology_csv": "results/workflow/step03/step03_topology_constraints.csv",
+    "output_dir": "results/workflow/step04_topology_aware_v2",
+    "layers": 6,
+    "inner_radius": 1.0,
+    "outer_radius": 1.85,
+    "seam_angle_deg": null,
+    "max_layer_shift": 1,
+    "layer_opt_iters": 30,
+    "capacity_tolerance": 0.25,
+    "w_lost": 4.0,
+    "w_new": 4.5,
+    "w_layer_jump": 4.0,
+    "w_capacity": 4.0,
+    "w_angle": 1.2,
+    "w_angle_cap": 3.0,
+    "w_rank": 0.3,
+    "w_width_balance": 2.0,
+    "w_aspect": 1.5,
+    "w_degree_inflation": 2.0,
+    "w_nonedge_overlap": 3.0,
+    "w_radial_deviation": 1.0,
+    "w_radial_inversion": 1.0,
+    "w_empty_layer": 10000.0,
+    "order_opt_iters": 28,
+    "max_rank_shift": 2,
+    "boundary_opt_iters": 18,
+    "boundary_search_samples": 15,
+    "min_cell_angle_deg": 1.5,
+    "max_angle_factor": 2.5,
+    "min_aspect": 0.35,
+    "max_aspect": 4.0,
+    "target_overlap_ratio": 0.1,
+    "max_angle_displacement_deg": 15.0,
+    "max_arc_step_deg": 0.5,
+    "run_parameter_sweep": false
+  },
+  "sweep_label": "",
+  "runtime_seconds": 191.223455958,
+  "adjacency_metric_primary": "effective_adjacency",
+  "effective_adjacency_definition": "same-layer cyclic contacts plus adjacent-layer contacts whose angular overlap / min(cell widths) >= target_overlap_ratio",
+  "raw_contact_adjacency_definition": "same-layer cyclic contacts plus any adjacent-layer positive angular overlap above numerical tolerance",
+  "seam_angle_deg": 186.99837870537243,
+  "initial_layer_counts": [
+    30,
+    29,
+    29,
+    29,
+    29,
+    30
+  ],
+  "optimized_layer_counts": [
+    23,
+    25,
+    28,
+    32,
+    34,
+    34
+  ],
+  "target_layer_counts": [
+    22,
+    25,
+    28,
+    31,
+    34,
+    36
+  ],
+  "layer_capacity_deviation": [
+    0.045454545454545456,
+    0.0,
+    0.0,
+    0.03225806451612903,
+    0.0,
+    -0.05555555555555555
+  ],
+  "baseline_effective_metrics": {
+    "original_edge_count": 312,
+    "raw_final_edge_count": 468,
+    "effective_final_edge_count": 442,
+    "preserved_edge_count": 217,
+    "lost_edge_count": 95,
+    "new_edge_count": 225,
+    "adjacency_precision": 0.49095022624434387,
+    "adjacency_recall": 0.6955128205128205,
+    "adjacency_f1": 0.5755968169761273,
+    "raw_adjacency_precision": 0.4807692307692308,
+    "raw_adjacency_recall": 0.7211538461538461,
+    "raw_adjacency_f1": 0.576923076923077,
+    "long_layer_conflict_count": 32,
+    "long_layer_conflict_rate": 0.10256410256410256,
+    "min_angular_width_deg": 1.3087800814020787,
+    "max_angular_width_deg": 35.18920579015165,
+    "p05_angular_width_deg": 4.656895587587646,
+    "p95_angular_width_deg": 24.282764079655596,
+    "lower_bound_cell_count": 1,
+    "exceed_max_target_count": -1,
+    "mean_aspect_ratio": 0.0,
+    "min_aspect_ratio": 0.0,
+    "max_aspect_ratio": 0.0,
+    "aspect_ratio_violation_count": -1,
+    "mean_degree_inflation": 1.5397727272727273,
+    "max_degree_inflation": 6,
+    "cells_degree_inflation_ge_3": 36,
+    "cells_degree_inflation_ge_5": 6,
+    "mean_angular_error_deg": 2.0601125251033743,
+    "median_angular_error_deg": 1.313426821117344,
+    "p90_angular_error_deg": 4.753564792585632,
+    "p95_angular_error_deg": 6.368309970983704,
+    "max_angular_error_deg": 9.75008014565456,
+    "angle_error_above_10_count": 0,
+    "angle_error_above_15_count": 0,
+    "capacity_error": 0.2126733214236987,
+    "max_capacity_deviation": 0.36363636363636365,
+    "nonedge_overlap_error": 0.0,
+    "objective": NaN
+  },
+  "optimized_effective_metrics": {
+    "original_edge_count": 312,
+    "raw_final_edge_count": 466,
+    "effective_final_edge_count": 402,
+    "preserved_edge_count": 254,
+    "lost_edge_count": 58,
+    "new_edge_count": 148,
+    "adjacency_precision": 0.6318407960199005,
+    "adjacency_recall": 0.8141025641025641,
+    "adjacency_f1": 0.711484593837535,
+    "raw_adjacency_precision": 0.5450643776824035,
+    "raw_adjacency_recall": 0.8141025641025641,
+    "raw_adjacency_f1": 0.6529562982005142,
+    "long_layer_conflict_count": 11,
+    "long_layer_conflict_rate": 0.035256410256410256,
+    "min_angular_width_deg": 1.5000000000000084,
+    "max_angular_width_deg": 36.61655642833745,
+    "p05_angular_width_deg": 1.5000000000000084,
+    "p95_angular_width_deg": 27.640537418352324,
+    "lower_bound_cell_count": 11,
+    "exceed_max_target_count": 8,
+    "mean_aspect_ratio": 2.154594961619738,
+    "min_aspect_ratio": 0.19788953724818178,
+    "max_aspect_ratio": 6.12317577346928,
+    "aspect_ratio_violation_count": 43,
+    "mean_degree_inflation": 1.0965909090909092,
+    "max_degree_inflation": 4,
+    "cells_degree_inflation_ge_3": 14,
+    "cells_degree_inflation_ge_5": 0,
+    "mean_angular_error_deg": 7.575187142933184,
+    "median_angular_error_deg": 7.1997646670717845,
+    "p90_angular_error_deg": 14.265909310559904,
+    "p95_angular_error_deg": 17.13740699214106,
+    "max_angular_error_deg": 28.40380676471216,
+    "angle_error_above_10_count": 56,
+    "angle_error_above_15_count": 17,
+    "capacity_error": 0.006193118181892501,
+    "max_capacity_deviation": 0.05555555555555555,
+    "nonedge_overlap_error": 0.014126914598347856,
+    "objective": 2.865101606701183
+  },
+  "stage_metrics": {
+    "initial_v2": {
+      "original_edge_count": 312,
+      "raw_final_edge_count": 463,
+      "effective_final_edge_count": 443,
+      "preserved_edge_count": 207,
+      "lost_edge_count": 105,
+      "new_edge_count": 236,
+      "adjacency_precision": 0.4672686230248307,
+      "adjacency_recall": 0.6634615384615384,
+      "adjacency_f1": 0.5483443708609271,
+      "raw_adjacency_precision": 0.46004319654427644,
+      "raw_adjacency_recall": 0.6826923076923077,
+      "raw_adjacency_f1": 0.5496774193548387,
+      "long_layer_conflict_count": 32,
+      "long_layer_conflict_rate": 0.10256410256410256,
+      "min_angular_width_deg": 3.8832576457929426,
+      "max_angular_width_deg": 37.96609914519919,
+      "p05_angular_width_deg": 6.42752665663925,
+      "p95_angular_width_deg": 21.365679003391648,
+      "lower_bound_cell_count": 0,
+      "exceed_max_target_count": 2,
+      "mean_aspect_ratio": 2.154594961619738,
+      "min_aspect_ratio": 0.5123040390276167,
+      "max_aspect_ratio": 8.321896365086333,
+      "aspect_ratio_violation_count": 10,
+      "mean_degree_inflation": 1.5340909090909092,
+      "max_degree_inflation": 6,
+      "cells_degree_inflation_ge_3": 33,
+      "cells_degree_inflation_ge_5": 3,
+      "mean_angular_error_deg": 9.083924662767945,
+      "median_angular_error_deg": 9.17873501218111,
+      "p90_angular_error_deg": 15.843953581550336,
+      "p95_angular_error_deg": 18.318646349747553,
+      "max_angular_error_deg": 24.064347894576034,
+      "angle_error_above_10_count": 76,
+      "angle_error_above_15_count": 26,
+      "capacity_error": 0.2126733214236987,
+      "max_capacity_deviation": 0.36363636363636365,
+      "nonedge_overlap_error": 0.016763498949398072,
+      "objective": 5.439335908229984
+    },
+    "layer_selected_v2": {
+      "original_edge_count": 312,
+      "raw_final_edge_count": 466,
+      "effective_final_edge_count": 445,
+      "preserved_edge_count": 217,
+      "lost_edge_count": 95,
+      "new_edge_count": 228,
+      "adjacency_precision": 0.48764044943820223,
+      "adjacency_recall": 0.6955128205128205,
+      "adjacency_f1": 0.5733157199471598,
+      "raw_adjacency_precision": 0.4699570815450644,
+      "raw_adjacency_recall": 0.7019230769230769,
+      "raw_adjacency_f1": 0.5629820051413882,
+      "long_layer_conflict_count": 11,
+      "long_layer_conflict_rate": 0.035256410256410256,
+      "min_angular_width_deg": 4.988717507889379,
+      "max_angular_width_deg": 33.226441190090476,
+      "p05_angular_width_deg": 6.085498962848505,
+      "p95_angular_width_deg": 23.94994533032985,
+      "lower_bound_cell_count": 0,
+      "exceed_max_target_count": 3,
+      "mean_aspect_ratio": 2.154594961619738,
+      "min_aspect_ratio": 0.8548860710631203,
+      "max_aspect_ratio": 6.12317577346928,
+      "aspect_ratio_violation_count": 9,
+      "mean_degree_inflation": 1.5511363636363635,
+      "max_degree_inflation": 4,
+      "cells_degree_inflation_ge_3": 27,
+      "cells_degree_inflation_ge_5": 0,
+      "mean_angular_error_deg": 9.399756847531926,
+      "median_angular_error_deg": 8.811757070292886,
+      "p90_angular_error_deg": 18.806487229778003,
+      "p95_angular_error_deg": 20.174402114624495,
+      "max_angular_error_deg": 26.92451398234659,
+      "angle_error_above_10_count": 75,
+      "angle_error_above_15_count": 36,
+      "capacity_error": 0.006193118181892501,
+      "max_capacity_deviation": 0.05555555555555555,
+      "nonedge_overlap_error": 0.015735750263667896,
+      "objective": 4.098854883935074
+    },
+    "order_selected_v2": {
+      "original_edge_count": 312,
+      "raw_final_edge_count": 466,
+      "effective_final_edge_count": 439,
+      "preserved_edge_count": 233,
+      "lost_edge_count": 79,
+      "new_edge_count": 206,
+      "adjacency_precision": 0.530751708428246,
+      "adjacency_recall": 0.7467948717948718,
+      "adjacency_f1": 0.6205059920106525,
+      "raw_adjacency_precision": 0.5021459227467812,
+      "raw_adjacency_recall": 0.75,
+      "raw_adjacency_f1": 0.6015424164524421,
+      "long_layer_conflict_count": 11,
+      "long_layer_conflict_rate": 0.035256410256410256,
+      "min_angular_width_deg": 1.5000000000000084,
+      "max_angular_width_deg": 33.226441190090476,
+      "p05_angular_width_deg": 4.4000798448998735,
+      "p95_angular_width_deg": 24.101886578209808,
+      "lower_bound_cell_count": 5,
+      "exceed_max_target_count": 4,
+      "mean_aspect_ratio": 2.154594961619738,
+      "min_aspect_ratio": 0.19788953724818178,
+      "max_aspect_ratio": 6.12317577346928,
+      "aspect_ratio_violation_count": 16,
+      "mean_degree_inflation": 1.4886363636363635,
+      "max_degree_inflation": 4,
+      "cells_degree_inflation_ge_3": 28,
+      "cells_degree_inflation_ge_5": 0,
+      "mean_angular_error_deg": 9.864706066330251,
+      "median_angular_error_deg": 9.339819561489,
+      "p90_angular_error_deg": 19.298121841940883,
+      "p95_angular_error_deg": 20.225866836936557,
+      "max_angular_error_deg": 26.92451398234659,
+      "angle_error_above_10_count": 84,
+      "angle_error_above_15_count": 41,
+      "capacity_error": 0.006193118181892501,
+      "max_capacity_deviation": 0.05555555555555555,
+      "nonedge_overlap_error": 0.01679696709410632,
+      "objective": 3.695709993647202
+    },
+    "boundary_selected_v2": {
+      "original_edge_count": 312,
+      "raw_final_edge_count": 466,
+      "effective_final_edge_count": 402,
+      "preserved_edge_count": 254,
+      "lost_edge_count": 58,
+      "new_edge_count": 148,
+      "adjacency_precision": 0.6318407960199005,
+      "adjacency_recall": 0.8141025641025641,
+      "adjacency_f1": 0.711484593837535,
+      "raw_adjacency_precision": 0.5450643776824035,
+      "raw_adjacency_recall": 0.8141025641025641,
+      "raw_adjacency_f1": 0.6529562982005142,
+      "long_layer_conflict_count": 11,
+      "long_layer_conflict_rate": 0.035256410256410256,
+      "min_angular_width_deg": 1.5000000000000084,
+      "max_angular_width_deg": 36.61655642833745,
+      "p05_angular_width_deg": 1.5000000000000084,
+      "p95_angular_width_deg": 27.640537418352324,
+      "lower_bound_cell_count": 11,
+      "exceed_max_target_count": 8,
+      "mean_aspect_ratio": 2.154594961619738,
+      "min_aspect_ratio": 0.19788953724818178,
+      "max_aspect_ratio": 6.12317577346928,
+      "aspect_ratio_violation_count": 43,
+      "mean_degree_inflation": 1.0965909090909092,
+      "max_degree_inflation": 4,
+      "cells_degree_inflation_ge_3": 14,
+      "cells_degree_inflation_ge_5": 0,
+      "mean_angular_error_deg": 7.575187142933184,
+      "median_angular_error_deg": 7.1997646670717845,
+      "p90_angular_error_deg": 14.265909310559904,
+      "p95_angular_error_deg": 17.13740699214106,
+      "max_angular_error_deg": 28.40380676471216,
+      "angle_error_above_10_count": 56,
+      "angle_error_above_15_count": 17,
+      "capacity_error": 0.006193118181892501,
+      "max_capacity_deviation": 0.05555555555555555,
+      "nonedge_overlap_error": 0.014126914598347856,
+      "objective": 2.865101606701183
+    }
+  },
+  "layer_optimization": {
+    "objective_before": 1.337872772874282,
+    "objective_after": 0.4495968150519123,
+    "history": [
+      {
+        "iteration": 0,
+        "objective": 1.337872772874282,
+        "counts": [
+          30,
+          29,
+          29,
+          29,
+          29,
+          30
+        ]
+      },
+      {
+        "iteration": 1,
+        "objective": 0.5447236270213307,
+        "counts": [
+          23,
+          26,
+          28,
+          31,
+          35,
+          33
+        ]
+      },
+      {
+        "iteration": 2,
+        "objective": 0.5071742507315125,
+        "counts": [
+          22,
+          26,
+          29,
+          32,
+          34,
+          33
+        ]
+      },
+      {
+        "iteration": 3,
+        "objective": 0.4952559721823791,
+        "counts": [
+          23,
+          25,
+          29,
+          31,
+          34,
+          34
+        ]
+      },
+      {
+        "iteration": 4,
+        "objective": 0.4740973145524118,
+        "counts": [
+          23,
+          25,
+          28,
+          32,
+          34,
+          34
+        ]
+      },
+      {
+        "iteration": 5,
+        "objective": 0.4601928739049951,
+        "counts": [
+          23,
+          25,
+          28,
+          31,
+          34,
+          35
+        ]
+      },
+      {
+        "iteration": 6,
+        "objective": 0.4495968150519123,
+        "counts": [
+          23,
+          25,
+          28,
+          32,
+          34,
+          34
+        ]
+      },
+      {
+        "iteration": 7,
+        "objective": 0.4495968150519123,
+        "counts": [
+          23,
+          25,
+          28,
+          32,
+          34,
+          34
+        ]
+      }
+    ],
+    "target_layer_counts": [
+      22,
+      25,
+      28,
+      31,
+      34,
+      36
+    ],
+    "capacity_lower_bounds": [
+      16,
+      18,
+      21,
+      23,
+      25,
+      27
+    ],
+    "capacity_upper_bounds": [
+      28,
+      32,
+      35,
+      39,
+      43,
+      45
+    ],
+    "initial_layer_counts": [
+      30,
+      29,
+      29,
+      29,
+      29,
+      30
+    ],
+    "optimized_layer_counts": [
+      23,
+      25,
+      28,
+      32,
+      34,
+      34
+    ],
+    "layer_capacity_deviation": [
+      0.045454545454545456,
+      0.0,
+      0.0,
+      0.03225806451612903,
+      0.0,
+      -0.05555555555555555
+    ],
+    "layer_changed_cell_count": 47
+  },
+  "order_optimization": {
+    "objective_before": 4.098854883935074,
+    "objective_after": 3.695709993647202,
+    "history": [
+      {
+        "iteration": 0,
+        "objective": 4.098854883935074
+      },
+      {
+        "iteration": 1,
+        "objective": 3.7351204885089047
+      },
+      {
+        "iteration": 2,
+        "objective": 3.716490940943216
+      },
+      {
+        "iteration": 3,
+        "objective": 3.716106653408198
+      },
+      {
+        "iteration": 4,
+        "objective": 3.695709993647202
+      },
+      {
+        "iteration": 5,
+        "objective": 3.695709993647202
+      }
+    ]
+  },
+  "boundary_optimization": {
+    "objective_before": 3.695709993647202,
+    "objective_after": 2.865101606701183,
+    "history": [
+      {
+        "iteration": 0,
+        "objective": 3.695709993647202
+      },
+      {
+        "iteration": 1,
+        "objective": 3.0879927983802498
+      },
+      {
+        "iteration": 2,
+        "objective": 2.974256812990703
+      },
+      {
+        "iteration": 3,
+        "objective": 2.944783891237451
+      },
+      {
+        "iteration": 4,
+        "objective": 2.9237642073819226
+      },
+      {
+        "iteration": 5,
+        "objective": 2.912156252850205
+      },
+      {
+        "iteration": 6,
+        "objective": 2.8841746049027597
+      },
+      {
+        "iteration": 7,
+        "objective": 2.883468171844305
+      },
+      {
+        "iteration": 8,
+        "objective": 2.8739121630102966
+      },
+      {
+        "iteration": 9,
+        "objective": 2.873757845720098
+      },
+      {
+        "iteration": 10,
+        "objective": 2.873636056358166
+      },
+      {
+        "iteration": 11,
+        "objective": 2.8734399792724066
+      },
+      {
+        "iteration": 12,
+        "objective": 2.8653158759871182
+      },
+      {
+        "iteration": 13,
+        "objective": 2.8652856856776876
+      },
+      {
+        "iteration": 14,
+        "objective": 2.865272023807179
+      },
+      {
+        "iteration": 15,
+        "objective": 2.8651606213355167
+      },
+      {
+        "iteration": 16,
+        "objective": 2.8651086916334623
+      },
+      {
+        "iteration": 17,
+        "objective": 2.8651030764226175
+      },
+      {
+        "iteration": 18,
+        "objective": 2.865101606701183
+      }
+    ]
+  },
+  "geometry_validation": {
+    "max_outer_arc_radial_error": 2.220446049250313e-16,
+    "max_inner_arc_radial_error": 4.440892098500626e-16,
+    "polygon_negative_area_count": 0,
+    "invalid_polygon_count": 0,
+    "angular_coverage_error_per_layer": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 8.881784197001252e-16,
+      "3": 0.0,
+      "4": 0.0,
+      "5": 0.0
+    }
+  },
+  "lost_edges": [
+    {
+      "cell_id_a": 5,
+      "cell_id_b": 18
+    },
+    {
+      "cell_id_a": 6,
+      "cell_id_b": 19
+    },
+    {
+      "cell_id_a": 17,
+      "cell_id_b": 30
+    },
+    {
+      "cell_id_a": 36,
+      "cell_id_b": 37
+    },
+    {
+      "cell_id_a": 36,
+      "cell_id_b": 51
+    },
+    {
+      "cell_id_a": 38,
+      "cell_id_b": 53
+    },
+    {
+      "cell_id_a": 44,
+      "cell_id_b": 45
+    },
+    {
+      "cell_id_a": 47,
+      "cell_id_b": 60
+    },
+    {
+      "cell_id_a": 50,
+      "cell_id_b": 51
+    },
+    {
+      "cell_id_a": 51,
+      "cell_id_b": 64
+    },
+    {
+      "cell_id_a": 52,
+      "cell_id_b": 65
+    },
+    {
+      "cell_id_a": 53,
+      "cell_id_b": 54
+    },
+    {
+      "cell_id_a": 54,
+      "cell_id_b": 55
+    },
+    {
+      "cell_id_a": 54,
+      "cell_id_b": 67
+    },
+    {
+      "cell_id_a": 56,
+      "cell_id_b": 69
+    },
+    {
+      "cell_id_a": 58,
+      "cell_id_b": 59
+    },
+    {
+      "cell_id_a": 63,
+      "cell_id_b": 75
+    },
+    {
+      "cell_id_a": 65,
+      "cell_id_b": 66
+    },
+    {
+      "cell_id_a": 66,
+      "cell_id_b": 78
+    },
+    {
+      "cell_id_a": 67,
+      "cell_id_b": 68
+    },
+    {
+      "cell_id_a": 68,
+      "cell_id_b": 80
+    },
+    {
+      "cell_id_a": 69,
+      "cell_id_b": 70
+    },
+    {
+      "cell_id_a": 71,
+      "cell_id_b": 72
+    },
+    {
+      "cell_id_a": 74,
+      "cell_id_b": 86
+    },
+    {
+      "cell_id_a": 78,
+      "cell_id_b": 79
+    },
+    {
+      "cell_id_a": 79,
+      "cell_id_b": 80
+    },
+    {
+      "cell_id_a": 79,
+      "cell_id_b": 94
+    },
+    {
+      "cell_id_a": 80,
+      "cell_id_b": 95
+    },
+    {
+      "cell_id_a": 81,
+      "cell_id_b": 96
+    },
+    {
+      "cell_id_a": 85,
+      "cell_id_b": 100
+    },
+    {
+      "cell_id_a": 88,
+      "cell_id_b": 103
+    },
+    {
+      "cell_id_a": 91,
+      "cell_id_b": 105
+    },
+    {
+      "cell_id_a": 95,
+      "cell_id_b": 109
+    },
+    {
+      "cell_id_a": 96,
+      "cell_id_b": 97
+    },
+    {
+      "cell_id_a": 96,
+      "cell_id_b": 110
+    },
+    {
+      "cell_id_a": 97,
+      "cell_id_b": 111
+    },
+    {
+      "cell_id_a": 98,
+      "cell_id_b": 112
+    },
+    {
+      "cell_id_a": 101,
+      "cell_id_b": 115
+    },
+    {
+      "cell_id_a": 105,
+      "cell_id_b": 106
+    },
+    {
+      "cell_id_a": 108,
+      "cell_id_b": 109
+    },
+    {
+      "cell_id_a": 110,
+      "cell_id_b": 111
+    },
+    {
+      "cell_id_a": 110,
+      "cell_id_b": 125
+    },
+    {
+      "cell_id_a": 111,
+      "cell_id_b": 126
+    },
+    {
+      "cell_id_a": 112,
+      "cell_id_b": 127
+    },
+    {
+      "cell_id_a": 113,
+      "cell_id_b": 128
+    },
+    {
+      "cell_id_a": 125,
+      "cell_id_b": 126
+    },
+    {
+      "cell_id_a": 126,
+      "cell_id_b": 141
+    },
+    {
+      "cell_id_a": 127,
+      "cell_id_b": 128
+    },
+    {
+      "cell_id_a": 133,
+      "cell_id_b": 148
+    },
+    {
+      "cell_id_a": 137,
+      "cell_id_b": 149
+    },
+    {
+      "cell_id_a": 138,
+      "cell_id_b": 150
+    },
+    {
+      "cell_id_a": 139,
+      "cell_id_b": 151
+    },
+    {
+      "cell_id_a": 151,
+      "cell_id_b": 152
+    },
+    {
+      "cell_id_a": 152,
+      "cell_id_b": 164
+    },
+    {
+      "cell_id_a": 159,
+      "cell_id_b": 160
+    },
+    {
+      "cell_id_a": 165,
+      "cell_id_b": 170
+    },
+    {
+      "cell_id_a": 166,
+      "cell_id_b": 171
+    },
+    {
+      "cell_id_a": 167,
+      "cell_id_b": 172
+    }
+  ],
+  "new_edges": [
+    {
+      "cell_id_a": 1,
+      "cell_id_b": 5
+    },
+    {
+      "cell_id_a": 1,
+      "cell_id_b": 18
+    },
+    {
+      "cell_id_a": 2,
+      "cell_id_b": 6
+    },
+    {
+      "cell_id_a": 2,
+      "cell_id_b": 10
+    },
+    {
+      "cell_id_a": 2,
+      "cell_id_b": 11
+    },
+    {
+      "cell_id_a": 4,
+      "cell_id_b": 17
+    },
+    {
+      "cell_id_a": 5,
+      "cell_id_b": 7
+    },
+    {
+      "cell_id_a": 6,
+      "cell_id_b": 8
+    },
+    {
+      "cell_id_a": 6,
+      "cell_id_b": 9
+    },
+    {
+      "cell_id_a": 7,
+      "cell_id_b": 19
+    },
+    {
+      "cell_id_a": 7,
+      "cell_id_b": 21
+    },
+    {
+      "cell_id_a": 9,
+      "cell_id_b": 23
+    },
+    {
+      "cell_id_a": 15,
+      "cell_id_b": 17
+    },
+    {
+      "cell_id_a": 15,
+      "cell_id_b": 29
+    },
+    {
+      "cell_id_a": 16,
+      "cell_id_b": 31
+    },
+    {
+      "cell_id_a": 19,
+      "cell_id_b": 34
+    },
+    {
+      "cell_id_a": 20,
+      "cell_id_b": 35
+    },
+    {
+      "cell_id_a": 21,
+      "cell_id_b": 36
+    },
+    {
+      "cell_id_a": 22,
+      "cell_id_b": 52
+    },
+    {
+      "cell_id_a": 28,
+      "cell_id_b": 43
+    },
+    {
+      "cell_id_a": 30,
+      "cell_id_b": 73
+    },
+    {
+      "cell_id_a": 33,
+      "cell_id_b": 49
+    },
+    {
+      "cell_id_a": 35,
+      "cell_id_b": 67
+    },
+    {
+      "cell_id_a": 36,
+      "cell_id_b": 52
+    },
+    {
+      "cell_id_a": 36,
+      "cell_id_b": 53
+    },
+    {
+      "cell_id_a": 37,
+      "cell_id_b": 51
+    },
+    {
+      "cell_id_a": 37,
+      "cell_id_b": 54
+    },
+    {
+      "cell_id_a": 38,
+      "cell_id_b": 54
+    },
+    {
+      "cell_id_a": 39,
+      "cell_id_b": 68
+    },
+    {
+      "cell_id_a": 39,
+      "cell_id_b": 69
+    },
+    {
+      "cell_id_a": 42,
+      "cell_id_b": 58
+    },
+    {
+      "cell_id_a": 44,
+      "cell_id_b": 58
+    },
+    {
+      "cell_id_a": 44,
+      "cell_id_b": 71
+    },
+    {
+      "cell_id_a": 44,
+      "cell_id_b": 72
+    },
+    {
+      "cell_id_a": 45,
+      "cell_id_b": 73
+    },
+    {
+      "cell_id_a": 45,
+      "cell_id_b": 74
+    },
+    {
+      "cell_id_a": 46,
+      "cell_id_b": 60
+    },
+    {
+      "cell_id_a": 46,
+      "cell_id_b": 61
+    },
+    {
+      "cell_id_a": 50,
+      "cell_id_b": 62
+    },
+    {
+      "cell_id_a": 50,
+      "cell_id_b": 64
+    },
+    {
+      "cell_id_a": 50,
+      "cell_id_b": 65
+    },
+    {
+      "cell_id_a": 51,
+      "cell_id_b": 53
+    },
+    {
+      "cell_id_a": 51,
+      "cell_id_b": 54
+    },
+    {
+      "cell_id_a": 51,
+      "cell_id_b": 80
+    },
+    {
+      "cell_id_a": 53,
+      "cell_id_b": 67
+    },
+    {
+      "cell_id_a": 54,
+      "cell_id_b": 69
+    },
+    {
+      "cell_id_a": 54,
+      "cell_id_b": 80
+    },
+    {
+      "cell_id_a": 55,
+      "cell_id_b": 81
+    },
+    {
+      "cell_id_a": 56,
+      "cell_id_b": 82
+    },
+    {
+      "cell_id_a": 57,
+      "cell_id_b": 82
+    },
+    {
+      "cell_id_a": 59,
+      "cell_id_b": 71
+    },
+    {
+      "cell_id_a": 59,
+      "cell_id_b": 83
+    },
+    {
+      "cell_id_a": 59,
+      "cell_id_b": 84
+    },
+    {
+      "cell_id_a": 60,
+      "cell_id_b": 75
+    },
+    {
+      "cell_id_a": 60,
+      "cell_id_b": 119
+    },
+    {
+      "cell_id_a": 61,
+      "cell_id_b": 63
+    },
+    {
+      "cell_id_a": 61,
+      "cell_id_b": 75
+    },
+    {
+      "cell_id_a": 61,
+      "cell_id_b": 76
+    },
+    {
+      "cell_id_a": 63,
+      "cell_id_b": 76
+    },
+    {
+      "cell_id_a": 64,
+      "cell_id_b": 77
+    },
+    {
+      "cell_id_a": 65,
+      "cell_id_b": 67
+    },
+    {
+      "cell_id_a": 65,
+      "cell_id_b": 78
+    },
+    {
+      "cell_id_a": 65,
+      "cell_id_b": 96
+    },
+    {
+      "cell_id_a": 66,
+      "cell_id_b": 79
+    },
+    {
+      "cell_id_a": 66,
+      "cell_id_b": 80
+    },
+    {
+      "cell_id_a": 68,
+      "cell_id_b": 81
+    },
+    {
+      "cell_id_a": 70,
+      "cell_id_b": 83
+    },
+    {
+      "cell_id_a": 72,
+      "cell_id_b": 85
+    },
+    {
+      "cell_id_a": 73,
+      "cell_id_b": 88
+    },
+    {
+      "cell_id_a": 74,
+      "cell_id_b": 90
+    },
+    {
+      "cell_id_a": 75,
+      "cell_id_b": 91
+    },
+    {
+      "cell_id_a": 75,
+      "cell_id_b": 105
+    },
+    {
+      "cell_id_a": 78,
+      "cell_id_b": 95
+    },
+    {
+      "cell_id_a": 79,
+      "cell_id_b": 96
+    },
+    {
+      "cell_id_a": 83,
+      "cell_id_b": 97
+    },
+    {
+      "cell_id_a": 83,
+      "cell_id_b": 99
+    },
+    {
+      "cell_id_a": 84,
+      "cell_id_b": 101
+    },
+    {
+      "cell_id_a": 86,
+      "cell_id_b": 88
+    },
+    {
+      "cell_id_a": 87,
+      "cell_id_b": 101
+    },
+    {
+      "cell_id_a": 88,
+      "cell_id_b": 90
+    },
+    {
+      "cell_id_a": 88,
+      "cell_id_b": 104
+    },
+    {
+      "cell_id_a": 89,
+      "cell_id_b": 118
+    },
+    {
+      "cell_id_a": 91,
+      "cell_id_b": 121
+    },
+    {
+      "cell_id_a": 98,
+      "cell_id_b": 113
+    },
+    {
+      "cell_id_a": 99,
+      "cell_id_b": 101
+    },
+    {
+      "cell_id_a": 99,
+      "cell_id_b": 114
+    },
+    {
+      "cell_id_a": 100,
+      "cell_id_b": 115
+    },
+    {
+      "cell_id_a": 100,
+      "cell_id_b": 116
+    },
+    {
+      "cell_id_a": 102,
+      "cell_id_b": 104
+    },
+    {
+      "cell_id_a": 103,
+      "cell_id_b": 116
+    },
+    {
+      "cell_id_a": 103,
+      "cell_id_b": 118
+    },
+    {
+      "cell_id_a": 105,
+      "cell_id_b": 119
+    },
+    {
+      "cell_id_a": 105,
+      "cell_id_b": 121
+    },
+    {
+      "cell_id_a": 106,
+      "cell_id_b": 122
+    },
+    {
+      "cell_id_a": 107,
+      "cell_id_b": 123
+    },
+    {
+      "cell_id_a": 108,
+      "cell_id_b": 110
+    },
+    {
+      "cell_id_a": 109,
+      "cell_id_b": 123
+    },
+    {
+      "cell_id_a": 110,
+      "cell_id_b": 123
+    },
+    {
+      "cell_id_a": 111,
+      "cell_id_b": 128
+    },
+    {
+      "cell_id_a": 111,
+      "cell_id_b": 129
+    },
+    {
+      "cell_id_a": 112,
+      "cell_id_b": 129
+    },
+    {
+      "cell_id_a": 115,
+      "cell_id_b": 131
+    },
+    {
+      "cell_id_a": 120,
+      "cell_id_b": 134
+    },
+    {
+      "cell_id_a": 120,
+      "cell_id_b": 136
+    },
+    {
+      "cell_id_a": 121,
+      "cell_id_b": 137
+    },
+    {
+      "cell_id_a": 122,
+      "cell_id_b": 138
+    },
+    {
+      "cell_id_a": 123,
+      "cell_id_b": 139
+    },
+    {
+      "cell_id_a": 125,
+      "cell_id_b": 139
+    },
+    {
+      "cell_id_a": 126,
+      "cell_id_b": 128
+    },
+    {
+      "cell_id_a": 126,
+      "cell_id_b": 142
+    },
+    {
+      "cell_id_a": 127,
+      "cell_id_b": 141
+    },
+    {
+      "cell_id_a": 129,
+      "cell_id_b": 143
+    },
+    {
+      "cell_id_a": 130,
+      "cell_id_b": 144
+    },
+    {
+      "cell_id_a": 130,
+      "cell_id_b": 146
+    },
+    {
+      "cell_id_a": 133,
+      "cell_id_b": 161
+    },
+    {
+      "cell_id_a": 135,
+      "cell_id_b": 149
+    },
+    {
+      "cell_id_a": 136,
+      "cell_id_b": 150
+    },
+    {
+      "cell_id_a": 137,
+      "cell_id_b": 150
+    },
+    {
+      "cell_id_a": 137,
+      "cell_id_b": 151
+    },
+    {
+      "cell_id_a": 138,
+      "cell_id_b": 151
+    },
+    {
+      "cell_id_a": 138,
+      "cell_id_b": 165
+    },
+    {
+      "cell_id_a": 139,
+      "cell_id_b": 152
+    },
+    {
+      "cell_id_a": 141,
+      "cell_id_b": 154
+    },
+    {
+      "cell_id_a": 142,
+      "cell_id_b": 155
+    },
+    {
+      "cell_id_a": 144,
+      "cell_id_b": 155
+    },
+    {
+      "cell_id_a": 145,
+      "cell_id_b": 156
+    },
+    {
+      "cell_id_a": 147,
+      "cell_id_b": 158
+    },
+    {
+      "cell_id_a": 147,
+      "cell_id_b": 160
+    },
+    {
+      "cell_id_a": 147,
+      "cell_id_b": 161
+    },
+    {
+      "cell_id_a": 148,
+      "cell_id_b": 159
+    },
+    {
+      "cell_id_a": 149,
+      "cell_id_b": 162
+    },
+    {
+      "cell_id_a": 150,
+      "cell_id_b": 163
+    },
+    {
+      "cell_id_a": 151,
+      "cell_id_b": 164
+    },
+    {
+      "cell_id_a": 152,
+      "cell_id_b": 165
+    },
+    {
+      "cell_id_a": 155,
+      "cell_id_b": 166
+    },
+    {
+      "cell_id_a": 156,
+      "cell_id_b": 167
+    },
+    {
+      "cell_id_a": 157,
+      "cell_id_b": 159
+    },
+    {
+      "cell_id_a": 157,
+      "cell_id_b": 168
+    },
+    {
+      "cell_id_a": 159,
+      "cell_id_b": 172
+    },
+    {
+      "cell_id_a": 162,
+      "cell_id_b": 173
+    },
+    {
+      "cell_id_a": 163,
+      "cell_id_b": 169
+    },
+    {
+      "cell_id_a": 164,
+      "cell_id_b": 167
+    },
+    {
+      "cell_id_a": 164,
+      "cell_id_b": 170
+    },
+    {
+      "cell_id_a": 167,
+      "cell_id_b": 171
+    },
+    {
+      "cell_id_a": 168,
+      "cell_id_b": 171
+    },
+    {
+      "cell_id_a": 168,
+      "cell_id_b": 172
+    },
+    {
+      "cell_id_a": 171,
+      "cell_id_b": 176
+    },
+    {
+      "cell_id_a": 172,
+      "cell_id_b": 176
+    }
+  ],
+  "remaining_long_layer_conflicts": [
+    {
+      "cell_id_a": 44,
+      "cell_id_b": 45,
+      "layer_delta": 2
+    },
+    {
+      "cell_id_a": 74,
+      "cell_id_b": 86,
+      "layer_delta": 2
+    },
+    {
+      "cell_id_a": 105,
+      "cell_id_b": 106,
+      "layer_delta": 2
+    },
+    {
+      "cell_id_a": 137,
+      "cell_id_b": 149,
+      "layer_delta": 2
+    },
+    {
+      "cell_id_a": 138,
+      "cell_id_b": 150,
+      "layer_delta": 2
+    },
+    {
+      "cell_id_a": 139,
+      "cell_id_b": 151,
+      "layer_delta": 2
+    },
+    {
+      "cell_id_a": 151,
+      "cell_id_b": 152,
+      "layer_delta": 2
+    },
+    {
+      "cell_id_a": 152,
+      "cell_id_b": 164,
+      "layer_delta": 2
+    },
+    {
+      "cell_id_a": 165,
+      "cell_id_b": 170,
+      "layer_delta": 2
+    },
+    {
+      "cell_id_a": 166,
+      "cell_id_b": 171,
+      "layer_delta": 2
+    },
+    {
+      "cell_id_a": 167,
+      "cell_id_b": 172,
+      "layer_delta": 2
+    }
+  ],
+  "max_degree_inflation": 4,
+  "max_degree_inflation_cells": [
+    61,
+    83,
+    123
+  ],
+  "layer_changed_cells": [
+    {
+      "cell_id": 3,
+      "initial_layer": 4,
+      "optimized_layer": 5
+    },
+    {
+      "cell_id": 13,
+      "initial_layer": 3,
+      "optimized_layer": 4
+    },
+    {
+      "cell_id": 14,
+      "initial_layer": 3,
+      "optimized_layer": 4
+    },
+    {
+      "cell_id": 26,
+      "initial_layer": 2,
+      "optimized_layer": 3
+    },
+    {
+      "cell_id": 27,
+      "initial_layer": 2,
+      "optimized_layer": 3
+    },
+    {
+      "cell_id": 29,
+      "initial_layer": 3,
+      "optimized_layer": 4
+    },
+    {
+      "cell_id": 30,
+      "initial_layer": 3,
+      "optimized_layer": 4
+    },
+    {
+      "cell_id": 31,
+      "initial_layer": 4,
+      "optimized_layer": 5
+    },
+    {
+      "cell_id": 41,
+      "initial_layer": 1,
+      "optimized_layer": 2
+    },
+    {
+      "cell_id": 43,
+      "initial_layer": 2,
+      "optimized_layer": 3
+    },
+    {
+      "cell_id": 52,
+      "initial_layer": 1,
+      "optimized_layer": 2
+    },
+    {
+      "cell_id": 58,
+      "initial_layer": 1,
+      "optimized_layer": 2
+    },
+    {
+      "cell_id": 63,
+      "initial_layer": 2,
+      "optimized_layer": 3
+    },
+    {
+      "cell_id": 64,
+      "initial_layer": 1,
+      "optimized_layer": 2
+    },
+    {
+      "cell_id": 67,
+      "initial_layer": 0,
+      "optimized_layer": 1
+    },
+    {
+      "cell_id": 68,
+      "initial_layer": 0,
+      "optimized_layer": 1
+    },
+    {
+      "cell_id": 69,
+      "initial_layer": 0,
+      "optimized_layer": 1
+    },
+    {
+      "cell_id": 70,
+      "initial_layer": 0,
+      "optimized_layer": 1
+    },
+    {
+      "cell_id": 71,
+      "initial_layer": 1,
+      "optimized_layer": 2
+    },
+    {
+      "cell_id": 73,
+      "initial_layer": 5,
+      "optimized_layer": 4
+    },
+    {
+      "cell_id": 77,
+      "initial_layer": 1,
+      "optimized_layer": 2
+    },
+    {
+      "cell_id": 78,
+      "initial_layer": 0,
+      "optimized_layer": 1
+    },
+    {
+      "cell_id": 85,
+      "initial_layer": 2,
+      "optimized_layer": 3
+    },
+    {
+      "cell_id": 86,
+      "initial_layer": 2,
+      "optimized_layer": 3
+    },
+    {
+      "cell_id": 91,
+      "initial_layer": 4,
+      "optimized_layer": 3
+    },
+    {
+      "cell_id": 99,
+      "initial_layer": 0,
+      "optimized_layer": 1
+    },
+    {
+      "cell_id": 100,
+      "initial_layer": 1,
+      "optimized_layer": 2
+    },
+    {
+      "cell_id": 101,
+      "initial_layer": 1,
+      "optimized_layer": 2
+    },
+    {
+      "cell_id": 102,
+      "initial_layer": 2,
+      "optimized_layer": 3
+    },
+    {
+      "cell_id": 103,
+      "initial_layer": 3,
+      "optimized_layer": 4
+    },
+    {
+      "cell_id": 114,
+      "initial_layer": 0,
+      "optimized_layer": 1
+    },
+    {
+      "cell_id": 115,
+      "initial_layer": 1,
+      "optimized_layer": 2
+    },
+    {
+      "cell_id": 119,
+      "initial_layer": 4,
+      "optimized_layer": 5
+    },
+    {
+      "cell_id": 120,
+      "initial_layer": 3,
+      "optimized_layer": 4
+    },
+    {
+      "cell_id": 121,
+      "initial_layer": 2,
+      "optimized_layer": 3
+    },
+    {
+      "cell_id": 122,
+      "initial_layer": 1,
+      "optimized_layer": 2
+    },
+    {
+      "cell_id": 130,
+      "initial_layer": 1,
+      "optimized_layer": 2
+    },
+    {
+      "cell_id": 131,
+      "initial_layer": 2,
+      "optimized_layer": 3
+    },
+    {
+      "cell_id": 135,
+      "initial_layer": 4,
+      "optimized_layer": 5
+    },
+    {
+      "cell_id": 145,
+      "initial_layer": 2,
+      "optimized_layer": 3
+    },
+    {
+      "cell_id": 146,
+      "initial_layer": 2,
+      "optimized_layer": 3
+    },
+    {
+      "cell_id": 147,
+      "initial_layer": 3,
+      "optimized_layer": 4
+    },
+    {
+      "cell_id": 150,
+      "initial_layer": 3,
+      "optimized_layer": 4
+    },
+    {
+      "cell_id": 159,
+      "initial_layer": 4,
+      "optimized_layer": 5
+    },
+    {
+      "cell_id": 164,
+      "initial_layer": 2,
+      "optimized_layer": 3
+    },
+    {
+      "cell_id": 170,
+      "initial_layer": 3,
+      "optimized_layer": 4
+    },
+    {
+      "cell_id": 171,
+      "initial_layer": 3,
+      "optimized_layer": 4
+    }
+  ]
+}
