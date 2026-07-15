@@ -12,26 +12,27 @@
 ├── data/
 │   ├── input/                 # 便携、可版本化的实验输入
 │   └── reference/             # 只用于解释和人工核对的参考文件
+├── baseline/                  # baseline 四个实验：code / results 按 step 整理
+├── workflow-v1/               # workflow v1：第一版拓扑感知优化
+├── workflow-v2/               # workflow v2：中心点输入的完整结果快照
+├── workflow-v3/               # workflow v3：0715 四角点/四顶点补充实验
 ├── scripts/
-│   ├── baselines/             # 四种 baseline 及共用几何/指标代码
-│   ├── workflow/              # Step 1–4 和拓扑感知 v1/v2
+│   ├── baselines/             # 原始 baseline 代码
+│   ├── workflow/              # 原始中心点 workflow 代码
 │   ├── run_all.py             # 按依赖顺序复现实验
 │   └── validate_repository.py # 仓库与结果完整性检查
 ├── results/
-│   ├── baselines/             # 四种 baseline 的结果快照
-│   └── workflow/              # 根目录中心点 workflow 的结果快照
-├── v1/                        # workflow v1：第一版拓扑感知优化器
-├── v2/                        # workflow v2：中心点输入的完整结果快照
-├── v3/                        # workflow v3：0715 四角点/四顶点补充实验
-└── EXPERIMENT_INDEX.md        # baseline 与 v1/v2/v3 的代码和结果索引
+│   ├── baselines/             # 原始 baseline 结果
+│   └── workflow/              # 原始中心点 workflow 结果
+└── EXPERIMENT_INDEX.md        # baseline 与 workflow-v1/v2/v3 的代码和结果索引
 ```
 
 ## Experiment map
 
 本仓库包含两类实验：
 
-- **Baseline experiments**：四种连续参数化或几何优化方法，代码在 `scripts/baselines/`，结果在 `results/baselines/`。
-- **Workflow experiments**：三个离散拓扑感知 workflow 版本，分别在 `v1/`、`v2/`、`v3/`。
+- **Baseline experiments**：四种连续参数化或几何优化方法，整理在 `baseline/`。
+- **Workflow experiments**：三个离散拓扑感知 workflow 版本，分别整理在 `workflow-v1/`、`workflow-v2/`、`workflow-v3/`。
 
 先读 `EXPERIMENT_INDEX.md` 可以看到每个实验对应的代码入口、输入数据、结果目录和关键指标。`WORKFLOW_VERSIONS.md` 保留为 workflow 三个版本的简要说明。
 
