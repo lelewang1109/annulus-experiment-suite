@@ -22,13 +22,13 @@ import numpy as np
 from matplotlib.collections import LineCollection, PolyCollection
 
 THIS_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = THIS_DIR.parents[1]
-WORKFLOW_DIR = THIS_DIR
-DEFAULT_INPUT_CSV = PROJECT_ROOT / "data" / "input" / "beijing_grid_cells.csv"
-DEFAULT_TOPOLOGY_CSV = PROJECT_ROOT / "results" / "workflow" / "step03" / "step03_topology_constraints.csv"
-DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "results" / "workflow" / "step04_topology_aware_v2"
+WORKFLOW_ROOT = THIS_DIR.parent
+PROJECT_ROOT = WORKFLOW_ROOT
+DEFAULT_INPUT_CSV = WORKFLOW_ROOT / "data" / "input" / "beijing_grid_cells.csv"
+DEFAULT_TOPOLOGY_CSV = WORKFLOW_ROOT / "results" / "step03_line_md_scaffold" / "step03_topology_constraints.csv"
+DEFAULT_OUTPUT_DIR = WORKFLOW_ROOT / "results" / "step04_topology_aware"
 
-for candidate in (THIS_DIR, WORKFLOW_DIR):
+for candidate in (THIS_DIR, WORKFLOW_ROOT):
     if str(candidate) not in sys.path:
         sys.path.insert(0, str(candidate))
 
@@ -50,7 +50,7 @@ from annulus_topology_utils import (  # noqa: E402
     read_topology_constraints,
     unwrap_angles,
 )
-from step04_build_topology_aware_partition import (  # noqa: E402
+from topology_aware_partition_helpers import (  # noqa: E402
     PartitionState,
     angular_errors,
     old_step4_intervals,
@@ -236,7 +236,7 @@ def classify_edges_by_layer(
     return same, adjacent, long
 
 
-def build_adjacencies_v2(
+def build_adjacencies(
     layer_ids: np.ndarray,
     orders: dict[int, list[int]],
     boundaries: dict[int, np.ndarray],
@@ -443,7 +443,7 @@ def comprehensive_objective(
     effective_overlap_ratio: float,
     max_angle_displacement: float,
 ) -> tuple[float, dict[str, Any]]:
-    raw_edges, effective_edges, _edge_kind = build_adjacencies_v2(layer_ids, orders, boundaries, effective_overlap_ratio)
+    raw_edges, effective_edges, _edge_kind = build_adjacencies(layer_ids, orders, boundaries, effective_overlap_ratio)
     eff_metrics = compute_adjacency_metrics(original_edges, effective_edges)
     intervals = intervals_by_index(layer_ids, orders, boundaries)
     angle_err = angular_errors(theta, intervals)
@@ -494,7 +494,7 @@ def comprehensive_objective(
     return float(objective), details
 
 
-def layer_objective_v2(
+def layer_objective(
     layer_ids: np.ndarray,
     initial_layer_ids: np.ndarray,
     radius: np.ndarray,
@@ -515,7 +515,7 @@ def layer_objective_v2(
     )
 
 
-def optimize_layer_assignment_v2(
+def optimize_layer_assignment(
     initial_layer_ids: np.ndarray,
     radius: np.ndarray,
     original_edges: set[tuple[int, int]],
@@ -530,7 +530,7 @@ def optimize_layer_assignment_v2(
     lower, upper = capacity_bounds(targets, capacity_tolerance)
     current = initial_layer_ids.copy()
     allowed = [set(range(max(0, int(k) - max_layer_shift), min(layer_count - 1, int(k) + max_layer_shift) + 1)) for k in initial_layer_ids]
-    current_obj = layer_objective_v2(current, initial_layer_ids, radius, original_edges, targets, weights)
+    current_obj = layer_objective(current, initial_layer_ids, radius, original_edges, targets, weights)
     best = current.copy()
     best_obj = current_obj
     history = [{"iteration": 0, "objective": current_obj, "counts": layer_counts(current, layer_count).tolist()}]
@@ -550,7 +550,7 @@ def optimize_layer_assignment_v2(
                     trial[idx] = candidate
                     if len(set(trial.tolist())) != layer_count:
                         continue
-                    obj = layer_objective_v2(trial, initial_layer_ids, radius, original_edges, targets, weights)
+                    obj = layer_objective(trial, initial_layer_ids, radius, original_edges, targets, weights)
                 if obj < local_best_obj - 1e-12:
                     local_best_obj = obj
                     local_best_layer = candidate
@@ -585,14 +585,14 @@ def optimize_layer_assignment_v2(
                             continue
                         trial = current.copy()
                         trial[int(idx)] = dst
-                        obj = layer_objective_v2(trial, initial_layer_ids, radius, original_edges, targets, weights)
+                        obj = layer_objective(trial, initial_layer_ids, radius, original_edges, targets, weights)
                         key = (obj, int(idx), dst)
                         if best_move is None or key < best_move:
                             best_move = key
             if best_move is not None:
                 _obj, idx, dst = best_move
                 current[idx] = dst
-                current_obj = layer_objective_v2(current, initial_layer_ids, radius, original_edges, targets, weights)
+                current_obj = layer_objective(current, initial_layer_ids, radius, original_edges, targets, weights)
                 repaired = True
                 changed = True
                 if current_obj < best_obj - 1e-12:
@@ -622,7 +622,7 @@ def optimize_layer_assignment_v2(
     }
 
 
-def make_state_v2(
+def make_state(
     name: str,
     layer_ids: np.ndarray,
     layer_edges: np.ndarray,
@@ -666,7 +666,7 @@ def evaluate_state(
     return obj, details
 
 
-def optimize_orders_v2(
+def optimize_orders(
     state: PartitionState,
     unwrapped_theta: np.ndarray,
     seam_angle: float,
@@ -739,7 +739,7 @@ def optimize_orders_v2(
     return best, {"objective_before": state.objective, "objective_after": best.objective, "history": history}
 
 
-def optimize_boundaries_v2(
+def optimize_boundaries(
     state: PartitionState,
     theta: np.ndarray,
     original_edges: set[tuple[int, int]],
@@ -845,7 +845,7 @@ def metrics_from_details(details: dict[str, Any]) -> V2Metrics:
     )
 
 
-def baseline_v2(
+def baseline(
     theta: np.ndarray,
     initial_layer_ids: np.ndarray,
     layer_edges: np.ndarray,
@@ -951,7 +951,7 @@ def build_adjacency_from_explicit_intervals(
     return edges
 
 
-def polygons_from_state_v2(
+def polygons_from_state(
     state: PartitionState, cell_ids: np.ndarray, max_arc_step_deg: float
 ) -> tuple[list[np.ndarray], list[int], dict[int, tuple[float, float, float, float]], np.ndarray]:
     intervals = intervals_by_index(state.layer_ids, state.orders, state.boundaries)
@@ -1295,11 +1295,11 @@ def run_pipeline(args: argparse.Namespace, *, write_outputs: bool = True, sweep_
     )
     initial_orders = build_layer_orders(initial_layer_ids, unwrapped_theta, args.layers)
     initial_ranks = rank_maps(initial_orders)
-    baseline_metrics_obj, baseline_raw, baseline_effective = baseline_v2(
+    baseline_metrics_obj, baseline_raw, baseline_effective = baseline(
         theta, initial_layer_ids, layer_edges, original_edges, initial_ranks, targets, weights, args
     )
 
-    optimized_layer_ids, layer_summary = optimize_layer_assignment_v2(
+    optimized_layer_ids, layer_summary = optimize_layer_assignment(
         initial_layer_ids,
         radius,
         original_edges,
@@ -1309,12 +1309,12 @@ def run_pipeline(args: argparse.Namespace, *, write_outputs: bool = True, sweep_
         capacity_tolerance=args.capacity_tolerance,
         weights=weights,
     )
-    initial_state = make_state_v2(
-        "initial_v2", initial_layer_ids, layer_edges, unwrapped_theta, seam_angle, min_cell_angle=math.radians(args.min_cell_angle_deg)
+    initial_state = make_state(
+        "initial", initial_layer_ids, layer_edges, unwrapped_theta, seam_angle, min_cell_angle=math.radians(args.min_cell_angle_deg)
     )
     evaluate_state(initial_state, theta, original_edges, initial_ranks, targets, weights, args)
-    layer_state = make_state_v2(
-        "layer_optimized_v2",
+    layer_state = make_state(
+        "layer_optimized",
         optimized_layer_ids,
         layer_edges,
         unwrapped_theta,
@@ -1323,18 +1323,18 @@ def run_pipeline(args: argparse.Namespace, *, write_outputs: bool = True, sweep_
     )
     evaluate_state(layer_state, theta, original_edges, initial_ranks, targets, weights, args)
     current_state = layer_state if layer_state.objective <= initial_state.objective + 1e-12 else initial_state
-    states = [initial_state.copy(name="initial_v2"), current_state.copy(name="layer_selected_v2")]
+    states = [initial_state.copy(name="initial"), current_state.copy(name="layer_selected")]
 
-    order_state, order_summary = optimize_orders_v2(
+    order_state, order_summary = optimize_orders(
         current_state, unwrapped_theta, seam_angle, theta, original_edges, initial_ranks, targets, weights, args
     )
     if order_state.objective <= current_state.objective + 1e-12:
         current_state = order_state
-    states.append(current_state.copy(name="order_selected_v2"))
-    boundary_state, boundary_summary = optimize_boundaries_v2(current_state, theta, original_edges, initial_ranks, targets, weights, args)
+    states.append(current_state.copy(name="order_selected"))
+    boundary_state, boundary_summary = optimize_boundaries(current_state, theta, original_edges, initial_ranks, targets, weights, args)
     if boundary_state.objective <= current_state.objective + 1e-12:
         current_state = boundary_state
-    states.append(current_state.copy(name="boundary_selected_v2"))
+    states.append(current_state.copy(name="boundary_selected"))
 
     scored = []
     stage_metrics: dict[str, Any] = {}
@@ -1359,11 +1359,11 @@ def run_pipeline(args: argparse.Namespace, *, write_outputs: bool = True, sweep_
     selected_details = scored[0][5]
     selected_metrics = scored[0][6]
     effective_edges = selected_details["effective_edges"]
-    _raw2, _eff2, edge_kind = build_adjacencies_v2(
+    _raw_final, _effective_final, edge_kind = build_adjacencies(
         selected_state.layer_ids, selected_state.orders, selected_state.boundaries, args.target_overlap_ratio
     )
 
-    polygons, ids, geometry, optimized_centers = polygons_from_state_v2(selected_state, cell_ids, args.max_arc_step_deg)
+    polygons, ids, geometry, optimized_centers = polygons_from_state(selected_state, cell_ids, args.max_arc_step_deg)
     geom = geometry_validation(polygons, geometry, selected_state)
     runtime = time.perf_counter() - start
 
@@ -1387,7 +1387,7 @@ def run_pipeline(args: argparse.Namespace, *, write_outputs: bool = True, sweep_
             selected_state.layer_ids,
             "Step 3B - Optimized Original-topology Scaffold",
         )
-        save_partition(args.output_dir / "step04_topology_aware_partition_v2.png", selected_state, polygons, ids, args.max_arc_step_deg)
+        save_partition(args.output_dir / "step04_topology_aware_partition.png", selected_state, polygons, ids, args.max_arc_step_deg)
         save_final_topology_only(
             args.output_dir / "step04_final_topology_only.png", optimized_centers, cell_ids, selected_state, effective_edges, edge_kind
         )
@@ -1427,12 +1427,12 @@ def run_pipeline(args: argparse.Namespace, *, write_outputs: bool = True, sweep_
         )
         save_width_distribution(args.output_dir / "angular_width_distribution.png", selected_details["width"]["widths"])
         write_csv(
-            args.output_dir / "step04_topology_edge_status_v2.csv",
+            args.output_dir / "step04_topology_edge_status.csv",
             edge_status_rows(original_edges, effective_edges, cell_ids),
             ["cell_id_a", "cell_id_b", "in_original", "in_final", "status"],
         )
         write_csv(
-            args.output_dir / "step04_topology_aware_assignment_v2.csv",
+            args.output_dir / "step04_topology_aware_assignment.csv",
             assignment_rows(
                 selected_state,
                 initial_layer_ids,
@@ -1512,7 +1512,7 @@ def run_pipeline(args: argparse.Namespace, *, write_outputs: bool = True, sweep_
         ],
     }
     if write_outputs:
-        (args.output_dir / "step04_topology_aware_metrics_v2.json").write_text(
+        (args.output_dir / "step04_topology_aware_metrics.json").write_text(
             json.dumps(json_safe(payload), ensure_ascii=False, indent=2), encoding="utf-8"
         )
     return payload
@@ -1647,14 +1647,14 @@ def main() -> None:
     for name in [
         "step03a_initial_topology_scaffold.png",
         "step03b_optimized_topology_scaffold.png",
-        "step04_topology_aware_partition_v2.png",
+        "step04_topology_aware_partition.png",
         "step04_final_topology_only.png",
         "step04_adjacency_comparison.png",
         "step04_lost_edges_only.png",
         "step04_new_edges_only.png",
-        "step04_topology_aware_assignment_v2.csv",
-        "step04_topology_aware_metrics_v2.json",
-        "step04_topology_edge_status_v2.csv",
+        "step04_topology_aware_assignment.csv",
+        "step04_topology_aware_metrics.json",
+        "step04_topology_edge_status.csv",
         "layer_capacity_diagnostic.png",
         "angular_width_distribution.png",
     ]:

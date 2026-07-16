@@ -11,11 +11,10 @@ to four-vertex polar mapping.
 | 01 | Four-vertex polar mapping | `code/step01_build_four_vertex_polar.py` | `results/step01_four_vertex_polar/` |
 | 02 | Original topology over generated centroids | `code/step02_build_center_topology.py` | `results/step02_center_topology/` |
 | 03 | Layer/edge scaffold | `code/step03_build_line_md_scaffold.py` | `results/step03_line_md_scaffold/` |
-| 04 | Initial layer-column partition | `code/step04_build_initial_partition.py` | `results/step04_initial_partition/` |
-| 05 | Topology-aware v2 optimizer on v3 input | `code/step05_build_topology_aware_v2.py` | `results/step05_topology_aware_v2/` |
+| 04 | Topology-aware optimizer on v3 input | `code/step04_build_topology_aware.py` | `results/step04_topology_aware/` |
 
-`code/step04_build_topology_aware_partition.py` is kept with its original file
-name because Step 05 imports helper functions from it.
+`code/topology_aware_partition_helpers.py` is a helper module imported by the
+topology-aware optimizer; it is not a separate workflow step.
 
 ## Generated data
 

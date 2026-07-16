@@ -2,7 +2,7 @@
   "parameters": {
     "input_csv": "data/input/beijing_grid_cells.csv",
     "topology_csv": "results/step03_line_md_scaffold/step03_topology_constraints.csv",
-    "output_dir": "results/step05_topology_aware_v2",
+    "output_dir": "results/step04_topology_aware",
     "layers": 6,
     "inner_radius": 1.0,
     "outer_radius": 1.85,
@@ -158,7 +158,7 @@
     "objective": 3.2930984915032977
   },
   "stage_metrics": {
-    "initial_v2": {
+    "initial": {
       "original_edge_count": 312,
       "raw_final_edge_count": 463,
       "effective_final_edge_count": 437,
@@ -199,7 +199,7 @@
       "nonedge_overlap_error": 0.018311342242829157,
       "objective": 5.548164257166883
     },
-    "layer_selected_v2": {
+    "layer_selected": {
       "original_edge_count": 312,
       "raw_final_edge_count": 466,
       "effective_final_edge_count": 435,
@@ -240,7 +240,7 @@
       "nonedge_overlap_error": 0.016397886426589812,
       "objective": 4.46261215367635
     },
-    "order_selected_v2": {
+    "order_selected": {
       "original_edge_count": 312,
       "raw_final_edge_count": 466,
       "effective_final_edge_count": 442,
@@ -281,7 +281,7 @@
       "nonedge_overlap_error": 0.016608214323744895,
       "objective": 4.082669910132247
     },
-    "boundary_selected_v2": {
+    "boundary_selected": {
       "original_edge_count": 312,
       "raw_final_edge_count": 466,
       "effective_final_edge_count": 400,

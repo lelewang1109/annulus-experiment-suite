@@ -1,7 +1,7 @@
 # Workflow v2
 
 Workflow v2 is the center-point topology-aware workflow snapshot. It keeps the
-original center-polar geometry entry and records the complete Step 1-5 result
+original center-polar geometry entry and records the complete Step 1-4 result
 chain.
 
 ## Code and results
@@ -11,11 +11,10 @@ chain.
 | 01 | Center-polar reference | `code/step01_build_center_polar_annulus.py` | `results/step01_center_polar/` |
 | 02 | Original topology over center-polar points | `code/step02_build_center_topology.py` | `results/step02_center_topology/` |
 | 03 | Layer/edge scaffold | `code/step03_build_line_md_scaffold.py` | `results/step03_line_md_scaffold/` |
-| 04 | Initial layer-column partition | `code/step04_build_initial_partition.py` | `results/step04_initial_partition/` |
-| 05 | Topology-aware v2 optimizer | `code/step05_build_topology_aware_v2.py` | `results/step05_topology_aware_v2/` |
+| 04 | Topology-aware optimizer | `code/step04_build_topology_aware.py` | `results/step04_topology_aware/` |
 
-`code/step04_build_topology_aware_partition.py` is kept with its original file
-name because Step 05 imports helper functions from it.
+`code/topology_aware_partition_helpers.py` is a helper module imported by the
+topology-aware optimizer; it is not a separate workflow step.
 
 ## Optimized metrics
 

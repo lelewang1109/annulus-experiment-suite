@@ -13,5 +13,7 @@ topology-aware optimizer.
 | 03 | Layer/edge scaffold | `code/step03_build_line_md_scaffold.py` | `results/step03_line_md_scaffold/` |
 | 04 | Topology-aware v1 optimizer | `code/step04_build_topology_aware_v1.py` | `results/step04_topology_aware_v1/` |
 
-Step 04 v1 code is preserved, but the full v1 result snapshot is not committed.
-Use the README in `results/step04_topology_aware_v1/` to regenerate it.
+`results/step04_initial_partition/` keeps the legacy Step 04 initial partition
+snapshot. Step 04 v1 topology-aware code is preserved, but the full v1
+topology-aware result snapshot is not committed. Use the README in
+`results/step04_topology_aware_v1/` to regenerate it.
